@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <title>TEST INDEX</title>
+    <meta charset="utf-8">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf-8">
+      window.onload = () => {
+        const socket = io()
+        socket.on('connect', () => {
+          console.log('Connected')
+        })
+        socket.on('pong', msg => console.log(msg))
+        const ping = () => socket.emit('ping', {message: "Hello from JS!"})
+        document.getElementById('pinger').onclick = ping;
+      }
+    </script>
+  </head>
+  <body>
+    <p>Test index</p>
+    <button id="pinger">Ping!</button>
+  </body>
+</html>
