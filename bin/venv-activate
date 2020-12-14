@@ -11,7 +11,7 @@ if ! [ -d "${BASE_DIR}/.venv" ]; then
     python -m pip install --upgrade pip # Ensure current pip.
     pip install -r requirements.txt
 else
-    source .venv/bin/activate
+    source "${BASE_DIR}/.venv/bin/activate"
 fi
 
 

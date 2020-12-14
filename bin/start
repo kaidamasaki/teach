@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+BIN_DIR=$(dirname "$0")
+BASE_DIR="${BIN_DIR}/.."
+
+"${BIN_DIR}/python" "${BASE_DIR}/teach.py"
+
