@@ -12,16 +12,12 @@
           console.log('Connected')
         })
         socket.on('my_pong', msg => console.log(msg))
-        const ping = () => {
-          console.log("sending ping!")
-          socket.emit('my_ping', {message: "Hello from JS!"})
-        }
-        document.getElementById('pinger').onclick = ping;
+
+        socket.emit('my_ping', {message: "Hello from JS!"})
       }
     </script>
   </head>
   <body>
     <p>Test index</p>
-    <button id="pinger">Ping!</button>
   </body>
 </html>
