@@ -2,8 +2,7 @@ from flask import Flask, render_template
 from flask_socketio import SocketIO, join_room, emit, send
 
 app = Flask(__name__)
-socketio = SocketIO(app, cors_allowed_origins="*")
-# socketio = SocketIO(app)
+socketio = SocketIO(app)
 ROOMS = {}
 
 @app.route('/')
