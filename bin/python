@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-BIN_DIR=$(dirname "$0")
+REALPATH=$(python3 -c "import os; print(os.path.realpath('$0'))")
+BIN_DIR=$(dirname "${REALPATH}")
 
 source "${BIN_DIR}/venv-activate"
 
