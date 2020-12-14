@@ -11,8 +11,11 @@
         socket.on('connect', () => {
           console.log('Connected')
         })
-        socket.on('pong', msg => console.log(msg))
-        const ping = () => socket.emit('ping', {message: "Hello from JS!"})
+        socket.on('my_pong', msg => console.log(msg))
+        const ping = () => {
+          console.log("sending ping!")
+          socket.emit('my_ping', {message: "Hello from JS!"})
+        }
         document.getElementById('pinger').onclick = ping;
       }
     </script>
