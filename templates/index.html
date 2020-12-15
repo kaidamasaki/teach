@@ -4,7 +4,9 @@
   <head>
     <title>TEST INDEX</title>
     <meta charset="utf-8">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='socket.io/socket.io.js')}}">
+    </script>
     <script type="text/javascript" charset="utf-8">
       window.onload = () => {
         const socket = io()
@@ -19,5 +21,7 @@
   </head>
   <body>
     <p>Test index</p>
+
+    <p>Can I change it?</p>
   </body>
 </html>

@@ -4,5 +4,7 @@ REALPATH=$(python3 -c "import os; print(os.path.realpath('$0'))")
 BIN_DIR=$(dirname "${REALPATH}")
 BASE_DIR="${BIN_DIR}/.."
 
-"${BIN_DIR}/python" "${BASE_DIR}/teach.py"
+source "${BIN_DIR}/venv-activate"
+
+python3 "${BASE_DIR}/teach.py"
 

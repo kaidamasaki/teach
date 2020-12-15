@@ -4,14 +4,32 @@ REALPATH=$(python3 -c "import os; print(os.path.realpath('$0'))")
 BIN_DIR=$(dirname "${REALPATH}")
 BASE_DIR="${BIN_DIR}/.."
 
+report() {
+    MESSAGE="$1"
+    shift
+
+    echo -en "\e[1m${MESSAGE}... \e[0m"
+    if "${@}" >/dev/null; then
+        echo -e "\e[1;32mdone\e[1;0m.\e[0m"
+    else
+        echo -e "\e[1;31mfailed\e[1;0m.\e[0m"
+        exit 1
+    fi
+}
+
 # Bootstrap the environment if it doesn't exist.
 if ! [ -d "${BASE_DIR}/.venv" ]; then
-    python3 -m venv "${BASE_DIR}/.venv"
-    source .venv/bin/activate
-    python -m pip install --upgrade pip # Ensure current pip.
-    pip install -r requirements.txt
-else
+    report 'Initializing virtual environment' \
+           python3 -m venv "${BASE_DIR}/.venv"
     source "${BASE_DIR}/.venv/bin/activate"
+    mkdir -p "${BASE_DIR}/static/socket.io"
+
+    report 'Downloading socket.io.js' curl -fsL https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js -o "${BASE_DIR}/static/socket.io/socket.io.js"
+    report 'Downloading socket.io.js.map' curl -fsL https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js.map -o "${BASE_DIR}/static/socket.io/socket.io.js.map"
+
+    # Ensure current pip.
+    report 'Upgrading pip' python -m pip install --upgrade pip
+    report 'Installing dependencies' pip install -r requirements.txt
 fi
 
-
+source "${BASE_DIR}/.venv/bin/activate"
