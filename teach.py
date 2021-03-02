@@ -1,21 +1,15 @@
 from flask import Flask, render_template
-from flask_socketio import SocketIO, join_room, emit, send
+from flask_meld import Meld
 
 app = Flask(__name__)
-socketio = SocketIO(app)
-ROOMS = {}
+app.config['SECRET_KEY'] = 'big!secret'  # TODO: load from env?
+
+meld = Meld()
+meld.init_app(app)
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@socketio.on('my_ping')
-def on_create(data):
-    print("********************************************************************************")
-    print(data)
-    print("********************************************************************************")
-
-    emit('my_pong', {"message": "Hello from Python!"})
-
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    app.socketio.run(app, debug=True)

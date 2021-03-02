@@ -24,9 +24,6 @@ if ! [ -d "${BASE_DIR}/.venv" ]; then
     source "${BASE_DIR}/.venv/bin/activate"
     mkdir -p "${BASE_DIR}/static/socket.io"
 
-    report 'Downloading socket.io.js' curl -fsL https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js -o "${BASE_DIR}/static/socket.io/socket.io.js"
-    report 'Downloading socket.io.js.map' curl -fsL https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js.map -o "${BASE_DIR}/static/socket.io/socket.io.js.map"
-
     # Ensure current pip.
     report 'Upgrading pip' python -m pip install --upgrade pip
     report 'Installing dependencies' pip install -r requirements.txt
