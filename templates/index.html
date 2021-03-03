@@ -2,26 +2,15 @@
 
 <html>
   <head>
-    <title>TEST INDEX</title>
+    <title>Ada Teach</title>
     <meta charset="utf-8">
-    <script type="text/javascript"
-            src="{{ url_for('static', filename='socket.io/socket.io.js')}}">
-    </script>
-    <script type="text/javascript" charset="utf-8">
-      window.onload = () => {
-        const socket = io()
-        socket.on('connect', () => {
-          console.log('Connected')
-        })
-        socket.on('my_pong', msg => console.log(msg))
-
-        socket.emit('my_ping', {message: "Hello from JS!"})
-      }
-    </script>
+    {% meld_scripts %}
   </head>
   <body>
-    <p>Test index</p>
+    <h1>Ada Teach</h1>
 
-    <p>Can I change it?</p>
+    {% block content %}
+    {% meld 'counter' %}
+    {% endblock %}
   </body>
 </html>
