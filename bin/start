@@ -6,5 +6,12 @@ BASE_DIR="${BIN_DIR}/.."
 
 source "${BIN_DIR}/venv-activate"
 
-python3 "${BASE_DIR}/teach.py"
+if [ -f "${BASE_DIR}/.env" ]; then
+    source "${BASE_DIR}/.env"
+
+    python3 "${BASE_DIR}/teach.py"
+else
+    cd "${BASE_DIR}" || exit 1
+    echo "Error: No .env file found in ${PWD}!" >&2 && exit 1
+fi
 
